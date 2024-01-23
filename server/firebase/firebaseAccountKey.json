@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "chatappschule",
+  "private_key_id": "81d76205462283883b6cbb2f85c2830134d00b96",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCuDvecjgIWDBJy\nbJlMQZWlxs9awwUgXXptoRku7pQbhVWtdohls9zbLRnWVKuDxCR3F9I63Giym06F\nCHwe1MPfAq0pDBN6IrVm9NlyBRAuISQGgGz8tw070t24XesoUvdvfqpeDT37NxJv\nXLMJLCZCvhi+o6ev74TfnJvY90JK4/mg4ZY22m0LPPkzsZTZs4qh/tDigvSAWMj7\nVbpeQkoDmOu65aG9D3rD45aRA412ZrZWqZH06EoddG1ukdpAQgiohQwuF/C5aQF/\ngy3DN4PKFJ1/qbnjLC7MJD/pQZC8A+yWUk8iKaPU/ikKxaw/3jJ4MY/sKqzIS0WC\n3/ZQpe3dAgMBAAECggEABY0ApIN62Y0lAXUpJl9pEFJYxoI1paSVhO2AShjdrEsC\nQnfnPacQwgScMFOe7KLSruGZmLrys890H5X3r1wFqxUAxLBX5qs4scHZNWOn8nCo\nH3T1BNIpn+DHpVuJZk3PCkU11a4CbgKBmf+QzhgUWEiLrXi2nku7Jw5tgevQt2ak\nPlFpEzKYd5BsZLcK6ml9zPuakOU6ozxGy7i2btA+UMnfkDSnksEWCmGAfmksxTQg\nNIyLebK+nCgk6OdEimVrDFDbnDnNowjd8Tr+2AN64wk1wH/iOX79d7alNW/Hlq+i\nzCW8lX5Bemz2RjMisCkj6T84G9Sc6G1N+UVpY26eWQKBgQDtsxZywZ9Q3PhZNvoL\nL42KMN+afDACHQF2ow7iLjpqU3qqfUDxOuLmSUQYiQHUT46Z7u/n7U8KICuSQTtc\nCKrsia31js8qoo1Yk9bn+ZfGx6F9ZA/vGFmhp0wYgyycf0rVVUAVoneuJg8HOZOC\nBkuXsygs09GOFBiU6+6dPLNlTwKBgQC7dY16mE2GPF4bj4bVLx7fESoL9SuQGILs\nb11dBc/hhXgeMxUpG/A38X4RhH7C54fUyh0fGTXAfc3+FJLTQ9gYuS/HXLj9Wet2\nsEYbxejgORFIkH+8aicx7TiPv589bZF3zSHQQODgSXXIgOqF7qGKEFnRc2QNrFUu\nrokm/9vHEwKBgCzeeGdTG1K1U3/ru8luwYYLcboEpT9Q4FzXrNCPL2Gwvl/+Ysrm\ndbxIqj0DZ7//AIkYLFsYVaowpmjmPWFDFZiu6JKI0ZxXsNy+k3uYhsj0GAzGXaeh\nbhHwtZGO+VXVRXf9rqomz/akooOXn7uUmqJZJEVJ+q2aJ4W8/37Y3XhLAoGAAsHj\n5t2+pi7VI4qk7RXYWmeiOrLMhT4XDutEcE3ZlPOlpKwTr5sdmXUP6aoNQ0isktC2\nRPLV+5LeKNKcpkblMtfmgAQ5JGDiOci1/0qV9lZgjrSxbFATa4SVxGeJLBokfaKi\n0LFjnWj3No/O41FzRtieuZn86saSKjGfCtfQn8kCgYBpeFbX7ZKzVEbIkxtZRraA\njgsUrhEMD0tRGFa19cLpXyDcBs3rOunK/i27j/+GZKI8UpQUqD2/6fwwPVnwkkI3\nWgjkv4KenfG0qpwO5Mv4AkVT/fN8H5ghDrKQvoaOWZM6wVjAPzg13qR7SgOPF/6A\nEX97etG4xhqgYBKgIUiOrg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-k165x@chatappschule.iam.gserviceaccount.com",
+  "client_id": "105218604204571228365",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-k165x%40chatappschule.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

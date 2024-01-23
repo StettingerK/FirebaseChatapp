@@ -1,0 +1,209 @@
+$base-color: burlywood;
+$sideBar-color: rgb(150,100,60);
+$sideBarUserInfo-color: rgb(120,80,30);
+$border-color: BLACK;
+$topBar-height: 50px;
+$userName-color: white;
+
+.home{
+    background-color: $base-color;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container{
+        border: 1px solid $border-color;
+        background-color: $base-color;
+        border-radius: 10px;
+        width: 90%;
+        height: 90%;
+        display: flex;
+        overflow: hidden;
+
+        .sidebar{
+            flex: 1;
+            border-right: 1px solid $border-color;
+            height: 100%;
+            background-color: $sideBar-color;
+
+            .userInfoBar{
+                height: $topBar-height;
+                background-color: $sideBarUserInfo-color;
+                border-bottom: 1px solid $border-color;
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+                padding: 5px;
+
+                .logo{
+                    color: $base-color;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+                
+                .user{
+                    display: flex;
+                    gap: 10px;
+
+                    img{
+                        background-color: $sideBar-color;
+                        height: 24px;
+                        width: 24px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        background-color: $sideBarUserInfo-color;
+                    }
+
+                    .userName{
+                        text-align: right;
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: $userName-color;
+                    }
+    
+                    .logoutButton{
+                        background-color: $base-color;
+                        border-radius: 7px;
+                        border-color: $base-color;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .userChat{
+            display: flex;
+            padding: 10px;
+            align-items: center;
+            gap: 10px;
+            color: $userName-color;
+            cursor: pointer;
+
+            &:hover{
+                background-color: $sideBarUserInfo-color;
+                border: 1px $border-color solid;
+            }
+            
+            img{
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .userChatInfo{
+                display: flex;
+                flex-direction: column;
+
+                .userName{
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+
+                .lastMessage{
+                    font-size: 13px;
+                    color: lightgray;
+                }
+            }
+        }
+        
+        .chat{
+            flex: 3;
+            height: 100%;
+            
+            .infoBar{
+                border-bottom: 1px $border-color solid;
+                height: $topBar-height;
+                padding: 5px;
+                display: flex;
+                gap: 20px;
+
+                .chatPartner{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: $userName-color;
+                    width: 34%;
+
+                    img{
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .chatPartnerInfo{
+                        .chatPartnerName{
+                            font-size: 15px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                .search{
+                    width: 25%;
+
+                    input{
+                        background-color: transparent;
+                        border: none;
+                        color: black;
+                        outline: none;
+                        width: 100%;
+                        border: 2px $border-color solid;
+                        font-size: 15px;
+                    }
+
+                    .userChat{
+                        border: 2px black solid;
+                        background-color: $base-color;
+
+                        &:hover{
+                            background-color: $sideBarUserInfo-color;
+                        }
+                    }
+
+                } 
+            }
+
+            .messages{
+                padding: 10px;
+                height: calc(100% - ($topBar-height + 10px + 80px));
+                background-color:azure;
+                
+            }
+
+            .inputMessage{
+                height: 50px;
+                padding: 5px;
+                border-top: 1px $border-color solid;
+                display: flex;
+                justify-content: space-between;
+
+                input{
+                    padding-left: 5px;
+                    width: 80%;
+                    font-size: 20px;
+                    background-color: transparent;
+                    border: none;
+                    color: black;
+                    outline: none;
+                }
+
+                button{
+                    background-color: transparent;
+                    //border: none;
+                    width: 50px;
+                    height: 50px;
+                    cursor: pointer;
+                    margin-right: 20px;
+
+                    .sendIcon{
+                        width: 40px;
+                        height: 40px;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
