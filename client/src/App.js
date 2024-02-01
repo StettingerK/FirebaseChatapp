@@ -11,7 +11,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/app" element={<BaseLayout/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="*" element={<Navigate to="/app" />} />
+        <Route path="*" element={<Navigate to="/register" />} />
       </Routes>
     </BrowserRouter>
   );
