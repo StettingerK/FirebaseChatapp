@@ -1,13 +1,14 @@
 import React, {useState, useRef} from 'react';
 import './loginRegisterStyle.scss';
 import ImageImport from '../img/ImageImport.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {sha256} from 'crypto-hash';
 import { red } from '@mui/material/colors';
 
 const Register = () => {
   const [sendButtonActive, setSendButtonActive] = useState(false);
   const [userCreated, setUserCrated] = useState();
+  const navigate = useNavigate();
   /*
     const [getUser, setUser] = useState();
     const [getPassword1, setPassword1] = useState();
@@ -48,22 +49,24 @@ const Register = () => {
           body: JSON.stringify(postData)
           })
 
-          setUserCrated(await res.json());
+          const data = await res.json()
+          if(data){
+            alert('Successfully registered! Please log in to continue')
+            setUserCrated(data);  
+            console.log("user Created");
+            navigate("/Login");
+          } else {
+            //alert('Username already exists');
+            setUserCrated(data);
+            console.log("user already exists");
+          }
       } catch (error) {
           console.error('Error:', error);
       }
-    } 
+    }
 
-    async function validateUser(e){
-      const user = userRef.current.value;
-      //postData(e, 'registerUserAvailable', user);
-      e.preventDefault()
-      
-      
-    };
-
-    const validatePassword = () => {
-      if(((pasword1Ref.current.value === pasword2Ref.current.value) && pasword1Ref !== "" && pasword1Ref.current.value.length >= 1) !== sendButtonActive){
+    const validateSendButton = () => {
+      if(((pasword1Ref.current.value === pasword2Ref.current.value) && pasword1Ref !== "" && pasword1Ref.current.value.length >= 8 && userRef.current.value >= 1) !== sendButtonActive){
         setSendButtonActive(!sendButtonActive);
       }
     };
@@ -74,9 +77,9 @@ const Register = () => {
             <span className='logo'>Chatapp</span>
             <span className='title'>Registrierung</span>
             <form onSubmit={onSubmit}>
-                <input type="text" name='user' placeholder="Benutzername" ref={userRef} onChange={validateUser}/>
-                <input type="password" name='password1' placeholder="Passwort" ref={pasword1Ref} onChange={validatePassword}/>
-                <input type="password" name='password2' placeholder="Passwort erneut" ref={pasword2Ref} onChange={validatePassword}/>
+                <input type="text" name='user' placeholder="Benutzername" ref={userRef} onChange={validateSendButton}/>
+                <input type="password" name='password1' placeholder="Passwort min. 8 Zeichen" ref={pasword1Ref} onChange={validateSendButton}/>
+                <input type="password" name='password2' placeholder="Passwort erneut min. 8 Zeichen" ref={pasword2Ref} onChange={validateSendButton}/>
                 <input style={{display:"none"}} type="file" id="file"/>
                 {/*<label htmlFor='file'>
                     <img src={ImageImport} alt=''/>
