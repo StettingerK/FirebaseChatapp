@@ -66,7 +66,8 @@ const Register = () => {
     }
 
     const validateSendButton = () => {
-      if(((pasword1Ref.current.value === pasword2Ref.current.value) && pasword1Ref !== "" && pasword1Ref.current.value.length >= 8 && userRef.current.value >= 1) !== sendButtonActive){
+      //console.log(userRef.current.value + "  " + pasword1Ref.current.value + "  " + pasword2Ref.current.value)
+      if((((pasword1Ref.current.value === pasword2Ref.current.value) && pasword1Ref.current.value.length >= 8) && userRef.current.value.length >= 1) !== sendButtonActive){
         setSendButtonActive(!sendButtonActive);
       }
     };

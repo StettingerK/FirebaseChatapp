@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc ,setDoc, getDoc, exists, collection, addDoc, query, getDocs, where} = require("firebase/firestore");
+const { getFirestore, doc ,setDoc, getDoc, exists, collection, addDoc, query, getDocs, where, and} = require("firebase/firestore");
 const express = require("express");
 const helmet = require("helmet");
 
@@ -20,6 +20,7 @@ const firebaseApp = initializeApp(firebaseConfic);
 const firestore = getFirestore();
 const path = require("path");
 const { getDefaultAutoSelectFamily } = require("net");
+const { userInfo } = require("os");
 
 require("dotenv").config();
 
@@ -49,6 +50,25 @@ async function IsUserNotCreated(userName){
   return querySnapshot.empty;
 };
 
+async function UserLogin(userName, password){
+  const userQuery = query(
+    collection(firestore, 'User'),
+    where('userName','==', userName),
+    where('password','==', password)
+  );
+  const querySnapshot = await getDocs(userQuery);
+  if(!querySnapshot.empty){
+    let userId = "";
+    querySnapshot.forEach((doc) => {
+      userId = [doc.id, doc.data().userName];
+    });
+    return userId;
+  }
+  else{
+    return "Invalid Credentials";
+  }
+}
+
 async function writeToCollection(collectionParam ,docData){
   const col = doc(firestore, collectionParam)
   const newDoc = await setDoc(col, docData)
@@ -70,8 +90,8 @@ app.get("/data", (req, res) =>{
 
 app.post("/register", async (req,res) =>{
   const params = {
-    userName: req.body.userName,
-    password: req.body.password
+    password: req.body.password,
+    userName: req.body.userName
   };
 
   if(await IsUserNotCreated(params.userName)){
@@ -81,6 +101,15 @@ app.post("/register", async (req,res) =>{
   else{
     res.status(409).send(false);
   }  
+});
+
+app.post("/login", async (req,res) =>{
+  const params = {
+    userName: req.body.userName,
+    password: req.body.password
+  };
+  user = await UserLogin(params.userName, params.password);
+  res.send(user); 
 });
 
 app.get("*", (req, res) => {
