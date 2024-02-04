@@ -13,13 +13,12 @@ const UserInfobar = () => {
   }
 
 
-  const userName = Session.get('UserName');
   return (
     <div className='userInfoBar'>
       <div className='logo'> Chatapp</div>
       <div className='user'>
         {/*<img src='https://images.pexels.com/photos/18796314/pexels-photo-18796314/free-photo-of-herbstliche-radtour-durch-berlin.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load' alt=''/>*/}
-        <span className='userName'>{userName}</span>
+        <span className='userName'>{Session.get('UserName')}</span>
         <button className='logoutButton' type="button" onClick={() => handleLogout()}>Logout</button>
       </div>
     </div>
