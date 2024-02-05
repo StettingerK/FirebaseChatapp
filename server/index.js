@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc ,setDoc, getDoc, exists, collection, addDoc, query, getDocs, where, and} = require("firebase/firestore");
+const { getFirestore, doc ,setDoc, getDoc, collection, addDoc, query, getDocs, where, orderBy, startAt, endAt, limit} = require("firebase/firestore");
 const express = require("express");
 const helmet = require("helmet");
 
@@ -50,7 +50,7 @@ async function IsUserNotCreated(userName){
   return querySnapshot.empty;
 };
 
-async function UserLogin(userName, password){
+async function userLogin(userName, password){
   const userQuery = query(
     collection(firestore, 'User'),
     where('userName','==', userName),
@@ -66,6 +66,24 @@ async function UserLogin(userName, password){
   }
   else{
     return "Invalid Credentials";
+  }
+}
+
+async function searchUser(searchedUser){
+  const userQuery = query(
+    collection(firestore, 'User'),
+    orderBy("userName"),
+    startAt(searchedUser),
+    endAt(`${searchedUser}\uf8ff`),
+    limit(10)
+  );
+  const querySnapshot = await getDocs(userQuery);
+  if(!querySnapshot.empty){
+    let data = [];
+    querySnapshot.forEach((doc) => {
+        data.push([doc.id, doc.data().userName]);
+    })
+    return data || "No User Found";
   }
 }
 
@@ -108,7 +126,15 @@ app.post("/login", async (req,res) =>{
     userName: req.body.userName,
     password: req.body.password
   };
-  user = await UserLogin(params.userName, params.password);
+  user = await userLogin(params.userName, params.password);
+  res.send(user); 
+});
+
+app.post("/search", async (req,res) =>{
+  const params = {
+    searchedUser: req.body.searchedUser
+  };
+  user = await searchUser(params.searchedUser);
   res.send(user); 
 });
 

@@ -10,7 +10,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/app" element={<BaseLayout/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="*" element={<Navigate to="/login" />}/>
+        <Route path="*" element={<Navigate to="/app" />}/>
       </Routes>
     </BrowserRouter>
   );
