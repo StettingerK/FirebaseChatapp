@@ -83,7 +83,10 @@ async function searchUser(searchedUser){
     querySnapshot.forEach((doc) => {
         data.push([doc.id, doc.data().userName]);
     })
-    return data || "No User Found";
+    return data;
+  }
+  else{
+    return "No User Found"
   }
 }
 

@@ -7,8 +7,7 @@ import Session from 'react-session-api'
 const Chat = () => {
   const [chatpartner, setChatpartner] = useState(Session.get('ChatparternerName'));
 
-
-  Session.onSet("ChatparternerName");
+  console.log(Session.get('ChatparternerName'));
   return (
     <div className='chat'>
       <div className='infoBar'>

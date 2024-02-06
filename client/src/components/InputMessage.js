@@ -4,8 +4,9 @@ import Session from 'react-session-api'
 
 const InputMessage = () => {
 
-  const handleSend = () => {
-    Session.get('ChatID');
+  const handleSending = () => {
+    console.log("test")
+    //Session.get('ChatID');
     //Session.get('ChatPartnerId');
     //Session.get('UserId');
   }
@@ -14,7 +15,7 @@ const InputMessage = () => {
     <div className='inputMessage'>
       <input type='text'placeholder='Deine Nachricht'/>
       <div className='inputButtons'>
-        <SendIcon className='sendIcon' onClick={handleSend()}/>
+        <SendIcon className='sendIcon' onClick={() => handleSending()}/>
       </div>
     </div>
   )

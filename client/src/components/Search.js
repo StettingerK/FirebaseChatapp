@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useCallback} from 'react'
 import Session from 'react-session-api'
 
 const Search = () => {
@@ -7,7 +7,7 @@ const Search = () => {
   const searchedRef = useRef( );
 
   async function handleKeyPress(event){
-    if(event.code === "Enter" || event.code === "NumpadEnter"){
+    if((event.code === "Enter" || event.code === "NumpadEnter") && searchedRef.current.value !== ""){
       event.preventDefault()
       const postData = {
         searchedUser: searchedRef.current.value
@@ -20,16 +20,19 @@ const Search = () => {
           },    
           body: JSON.stringify(postData)
           })
-
-          const data = await res.json();
+          const data= await res.json();
+          console.log(data)
           setSearchedUsers(data);
       } catch (error) {
           console.error('Error:', error);
+          setSearchedUsers(undefined);
       }
     }  
   }
 
   const handleClickChatpartner = (e) => {
+    console.log("Session changed");
+    console.log(searchedUsers);
     Session.set('ChatpartnerId', e[0]);
     Session.set('ChatparternerName', e[1]);
   }
@@ -37,26 +40,23 @@ const Search = () => {
   return (
     <div className='search'>
       <div className='searchForm'>
-        <input type="text" placeholder='Suchen nach Personen' onKeyDown={event => handleKeyPress(event)} onFocus={() => setUnfolded(true)} onBlur={() => setUnfolded(false)} ref={searchedRef}/>
+        <input type="text" placeholder='Suchen nach Personen' onKeyDown={event => handleKeyPress(event)} onFocus={() => setUnfolded(true)} onBlur={() => {setTimeout(() => {setUnfolded(false);}, 100)}} ref={searchedRef}/>
+      </div>
         {unfolded && (
           <div>
-            {searchedUsers !== undefined ?
+            {searchedUsers !== undefined?
             searchedUsers.map(e => {
               return(
-              <div className='userChat'>
-              <div className='userChatInfo'>
-                <span className='userName' onClick={e => handleClickChatpartner(e)}>{e[1]}</span>
-              </div>
-            </div>)
+              <div className='userChat' onClick={(e) => handleClickChatpartner(e)}>
+                <span className='userName'>{e[1]}</span>
+              </div>)
             })
             : <div className='userChat'>
-            <div className='userChatInfo'>
-              <span className='userName'>No User Found</span>
-            </div>
-          </div>}
+                <span className='userName' >No User Found</span>
+              </div>
+            }
           </div>
         )}
-      </div>
     </div>
   )
 }
