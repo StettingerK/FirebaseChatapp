@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc ,setDoc, getDoc, collection, addDoc, query, getDocs, where, orderBy, startAt, endAt, limit} = require("firebase/firestore");
+const { getFirestore, doc ,setDoc, getDoc, collection, addDoc, query, getDocs, where, orderBy, startAt, endAt, limit, and, or} = require("firebase/firestore");
 const express = require("express");
 const helmet = require("helmet");
 
@@ -90,6 +90,45 @@ async function searchUser(searchedUser){
   }
 }
 
+async function isChatCreated(myUserId, chatpartnerUserId){
+  const userQuery = query(
+    collection(firestore, 'Chats'),
+    or( and(where('User1', "==", myUserId), where('User2', "==", chatpartnerUserId)),
+        and(where('User1', "==", chatpartnerUserId), where('User2', "==", myUserId))
+    )
+  );
+  const querySnapshot = await getDocs(userQuery);
+  if(!querySnapshot.empty){
+    let chatid = "";
+    querySnapshot.forEach((doc) => {
+      chatid = doc.id;
+    });
+    return chatid;
+  }
+  else{
+    return "kein Chat vorhanden";
+  }
+}
+
+async function getChat(chatId){
+  const userQuery = query(
+    collection(firestore, 'Messages'),
+    where('ChatId', "==", chatId), 
+    orderBy("Time")
+  );
+  const querySnapshot = await getDocs(userQuery);
+  if(!querySnapshot.empty){
+    let chat = "";
+    querySnapshot.forEach((doc) => {
+      chat = [doc.data().UserId, doc.data().Message, doc.data().Time];
+    });
+    return chat;
+  }
+  else{
+    return "kein Chat vorhanden";
+  }
+}
+
 async function writeToCollection(collectionParam ,docData){
   const col = doc(firestore, collectionParam)
   const newDoc = await setDoc(col, docData)
@@ -139,6 +178,25 @@ app.post("/search", async (req,res) =>{
   };
   user = await searchUser(params.searchedUser);
   res.send(user); 
+});
+
+app.post("/chat", async (req,res) =>{
+  const params = {
+    myUserId: req.body.myUserId,
+    chatpartnerUserId: req.body.chatpartnerUserId
+  };
+  chatid = await isChatCreated(params.myUserId, params.chatpartnerUserId);
+  //console.log(chatid)
+  res.send(chatid); 
+});
+
+app.post("/messages", async (req,res) =>{
+  const params = {
+    ChatId: req.body.ChatId
+  };
+  chat = await getChat(params.ChatId);
+  console.log(chat)
+  res.send(chat); 
 });
 
 app.get("*", (req, res) => {

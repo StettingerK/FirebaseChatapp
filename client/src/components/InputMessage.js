@@ -4,18 +4,16 @@ import Session from 'react-session-api'
 
 const InputMessage = () => {
 
-  const handleSending = () => {
-    console.log("test")
-    //Session.get('ChatID');
-    //Session.get('ChatPartnerId');
-    //Session.get('UserId');
+
+  async function handleSending(e){
+    //Session.get("ChatId");
   }
 
   return (
     <div className='inputMessage'>
       <input type='text'placeholder='Deine Nachricht'/>
       <div className='inputButtons'>
-        <SendIcon className='sendIcon' onClick={() => handleSending()}/>
+        <SendIcon className='sendIcon' onClick={(e) => handleSending(e)}/>
       </div>
     </div>
   )

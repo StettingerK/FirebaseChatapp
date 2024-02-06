@@ -8,7 +8,7 @@ const Search = () => {
 
   async function handleKeyPress(event){
     if((event.code === "Enter" || event.code === "NumpadEnter") && searchedRef.current.value !== ""){
-      event.preventDefault()
+      //event.preventDefault()
       const postData = {
         searchedUser: searchedRef.current.value
       }
@@ -30,11 +30,11 @@ const Search = () => {
     }  
   }
 
-  const handleClickChatpartner = (e) => {
+  const handleClickChatpartner = (data) => {
     console.log("Session changed");
-    console.log(searchedUsers);
-    Session.set('ChatpartnerId', e[0]);
-    Session.set('ChatparternerName', e[1]);
+    //console.log(data);
+    Session.set('ChatparternerName', data[1]);
+    Session.set('ChatpartnerId', data[0]);
   }
 
   return (
@@ -45,10 +45,10 @@ const Search = () => {
         {unfolded && (
           <div>
             {searchedUsers !== undefined?
-            searchedUsers.map(e => {
+            searchedUsers.map(data => {
               return(
-              <div className='userChat' onClick={(e) => handleClickChatpartner(e)}>
-                <span className='userName'>{e[1]}</span>
+              <div className='userChat' onClick={() => handleClickChatpartner(data)}>
+                <span className='userName'>{data[1]}</span>
               </div>)
             })
             : <div className='userChat'>
