@@ -6,17 +6,6 @@ const Search = () => {
   const [unfolded, setUnfolded] = useState(false);
   const searchedRef = useRef( );
 
-  const SearchUser = (userName) => {
-    console.log(userName);
-    return (            
-      <div className='userChat'>
-        {/*<img src='https://images.pexels.com/photos/18796314/pexels-photo-18796314/free-photo-of-herbstliche-radtour-durch-berlin.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load' alt=''/>*/}
-        <div className='userChatInfo'>
-          <span className='userName'>{userName}</span>
-        </div>
-      </div>)
-  }
-
   async function handleKeyPress(event){
     if(event.code === "Enter" || event.code === "NumpadEnter"){
       event.preventDefault()
@@ -40,6 +29,11 @@ const Search = () => {
     }  
   }
 
+  const handleClickChatpartner = (e) => {
+    Session.set('ChatpartnerId', e[0]);
+    Session.set('ChatparternerName', e[1]);
+  }
+
   return (
     <div className='search'>
       <div className='searchForm'>
@@ -51,7 +45,7 @@ const Search = () => {
               return(
               <div className='userChat'>
               <div className='userChatInfo'>
-                <span className='userName' onClick={Session.set('ChatPartner', e[0])}>{e[1]}</span>
+                <span className='userName' onClick={e => handleClickChatpartner(e)}>{e[1]}</span>
               </div>
             </div>)
             })
