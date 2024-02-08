@@ -56,7 +56,7 @@ const Login = () => {
             <form onSubmit={onSubmit}>
                 <input type="text" placeholder="Benutzername" ref={userRef} onChange={validateSendButton}/>
                 <input type="password" placeholder="Passwort min. 8 Zeichen" ref={paswordRef} onChange={validateSendButton}/>
-                {userLogedIn === false ? <p style={{color:'red'}}>Benutzername oder Password falsch</p>:""}
+                {userLogedIn === false ? <p style={{color:'red'}}>Benutzername oder Passwort falsch</p>:""}
                 <button type='submit' disabled={!sendButtonActive}>Anmelden</button>
             </form>
             <p>Du hast noch keinen Account? <Link to="/register">Registrierung</Link></p>

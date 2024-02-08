@@ -15,12 +15,13 @@ const firebaseConfic = ({
   appId: "1:108118542440:web:fb3ab09ca62f5c936a13dd"
 });
 
+
+//const { getDefaultAutoSelectFamily } = require("net");
+//const { userInfo } = require("os");
+
 const firebaseApp = initializeApp(firebaseConfic);
-  
 const firestore = getFirestore();
 const path = require("path");
-const { getDefaultAutoSelectFamily } = require("net");
-const { userInfo } = require("os");
 
 require("dotenv").config();
 
